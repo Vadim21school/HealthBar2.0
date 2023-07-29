@@ -14,7 +14,7 @@ public class AmounOfHealtText : MonoBehaviour
         _managerHealth = FindObjectOfType<ManagerHealth>();
     }
 
-    private void Update()
+    public void ChangeText()
     {
         _amountOfHealt.text = Convert.ToString(_managerHealth.GetHealthPlayer());
     }
