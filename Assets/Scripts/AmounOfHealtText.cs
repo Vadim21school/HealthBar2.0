@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class AmounOfHealtText : MonoBehaviour
 {
-    private ManagerHealth _managerHealth;
+    private HealthPlayer _managerHealth;
     private TextMeshProUGUI _amountOfHealt;
 
     private void Start()
     {
         _amountOfHealt = GetComponent<TextMeshProUGUI>();
-        _managerHealth = FindObjectOfType<ManagerHealth>();
+        _managerHealth = FindObjectOfType<HealthPlayer>();
     }
 
     public void ChangeText()
