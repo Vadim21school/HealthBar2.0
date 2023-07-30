@@ -823,7 +823,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb72b5c683690e4c81c154d898050a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 450517455}
+  changed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 839070002}
+        m_TargetAssemblyTypeName: SliderValue, Assembly-CSharp
+        m_MethodName: ChangeAmount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 450517455}
+        m_TargetAssemblyTypeName: AmounOfHealtText, Assembly-CSharp
+        m_MethodName: ChangeText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _amountOfChange: 10
+  _minAmount: 0
+  _maxAmount: 100
 --- !u!114 &839070001
 MonoBehaviour:
   m_ObjectHideFlags: 0

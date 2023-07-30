@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class SliderValue : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
     private Slider _slider;
     private HealthPlayer _managerHealth;
@@ -16,11 +16,13 @@ public class SliderValue : MonoBehaviour
     {
         _slider = GetComponent<Slider>();
         _managerHealth = GetComponent<HealthPlayer>();
-        _amountOfHealth = _managerHealth.GetHealthPlayer();
+        _amountOfHealth = _managerHealth.Amount;
     }
 
-    public void ChangeAmount(float currentHealth)
+    public void ChangeAmount()
     {
+        float currentHealth = _managerHealth.Amount;
+
         if (_changeAmount != null)
         {
             StopCoroutine(ChangeSliderValue(currentHealth));

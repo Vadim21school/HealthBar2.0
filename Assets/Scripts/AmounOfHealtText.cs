@@ -16,6 +16,6 @@ public class AmounOfHealtText : MonoBehaviour
 
     public void ChangeText()
     {
-        _amountOfHealt.text = Convert.ToString(_managerHealth.GetHealthPlayer());
+        _amountOfHealt.text = Convert.ToString(_managerHealth.Amount);
     }
 }

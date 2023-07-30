@@ -1,42 +1,35 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(SliderValue))]
+[RequireComponent(typeof(HealthBar))]
 public class HealthPlayer : MonoBehaviour
 {
-    private float _amount = 0f;
-    private float _amountOfChange = 10f;
-    private float _minAmount = 0f;
-    private float _currentValue;
-    private float _maxAmount = 100f;
-    [SerializeField] private AmounOfHealtText _text;
-    private SliderValue _sliderValue;
+    [SerializeField] private UnityEvent changed;
+    [SerializeField] private float _amountOfChange;
+    [SerializeField] private float _minAmount;
+    [SerializeField] private float _maxAmount;
 
+    private float _currentValue;
+
+    public float Amount { get; private set; }
 
     private void Start()
     {
-        _amount = _minAmount;
-        _sliderValue = GetComponent<SliderValue>();
+        Amount = _minAmount;
     }
 
     public void IncreaseHealth()
     {
-        _currentValue = _amount + _amountOfChange;
+        _currentValue = Amount + _amountOfChange;
 
-        _amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
-        _sliderValue.ChangeAmount(_amount);
-        _text.ChangeText();
+        Amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
+        changed.Invoke();
     }
 
     public void ReduceHealth()
     {
-        _currentValue = _amount - _amountOfChange;
-        _amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
-        _sliderValue.ChangeAmount(_amount);
-        _text.ChangeText();
-    }
-
-    public float GetHealthPlayer()
-    {
-        return _amount;
+        _currentValue = Amount - _amountOfChange;
+        Amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
+        changed.Invoke();
     }
 }
