@@ -6,8 +6,6 @@ public class HealthPlayer : MonoBehaviour
     [SerializeField] private float _minAmount;
     [SerializeField] private float _maxAmount;
 
-    private float _currentValue;
-
     public float Amount { get; private set; }
 
     private void Start()
@@ -15,16 +13,13 @@ public class HealthPlayer : MonoBehaviour
         Amount = _minAmount;
     }
 
-    public void IncreaseHealth(float amountOfChange)
+    public void IncreaseAmount(float amountOfChange)
     {
-        _currentValue = Amount + amountOfChange;
-
-        Amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
+        Amount = Mathf.Clamp(Amount + amountOfChange, _minAmount, _maxAmount);
     }
 
-    public void ReduceHealth(float amountOfChange)
+    public void ReduceAmount(float amountOfChange)
     {
-        _currentValue = Amount -    amountOfChange;
-        Amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
+        Amount = Mathf.Clamp(Amount - amountOfChange, _minAmount, _maxAmount);
     }
 }

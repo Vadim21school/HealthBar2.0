@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     private Slider _slider;
-    private HealthPlayer _managerHealth;
-    private float _amountOfHealth;
+    private HealthPlayer _healthPlayerScript;
     private float _delayTime = 0.1f;
     private float _maxDelta = 10f;
     private Coroutine _changeAmount;
@@ -16,30 +15,26 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         _slider = GetComponent<Slider>();
-        _managerHealth = GetComponent<HealthPlayer>();
-        _amountOfHealth = _managerHealth.Amount;
+        _healthPlayerScript = GetComponent<HealthPlayer>();
     }
 
     public void ChangeAmount()
     {
-        float currentHealth = _managerHealth.Amount;
-
         if (_changeAmount != null)
         {
-            StopCoroutine(ChangeSliderValue(currentHealth));
+            StopCoroutine(ChangeSliderValue(_healthPlayerScript.Amount));
         }
 
-        StartCoroutine(ChangeSliderValue(currentHealth));
-        _amountOfHealth = currentHealth;
+        _changeAmount = StartCoroutine(ChangeSliderValue(_healthPlayerScript.Amount));
     }
 
     private IEnumerator ChangeSliderValue(float currentHealth)
     {
         WaitForSeconds delayTime = new WaitForSeconds(_delayTime);
 
-        while (_amountOfHealth != currentHealth)
+        while (_slider.value != currentHealth)
         {
-            _slider.value = Mathf.MoveTowards(_amountOfHealth, currentHealth, _maxDelta);
+            _slider.value = Mathf.MoveTowards(_slider.value, currentHealth, _maxDelta);
 
             yield return delayTime;
         }
