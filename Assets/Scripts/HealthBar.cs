@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
+[RequireComponent(typeof(HealthPlayer))]
 public class HealthBar : MonoBehaviour
 {
     private Slider _slider;

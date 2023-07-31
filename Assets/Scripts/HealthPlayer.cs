@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(HealthBar))]
 public class HealthPlayer : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _changed;
-    [SerializeField] private float _amountOfChange;
     [SerializeField] private float _minAmount;
     [SerializeField] private float _maxAmount;
 
@@ -18,18 +15,16 @@ public class HealthPlayer : MonoBehaviour
         Amount = _minAmount;
     }
 
-    public void IncreaseHealth()
+    public void IncreaseHealth(float amountOfChange)
     {
-        _currentValue = Amount + _amountOfChange;
+        _currentValue = Amount + amountOfChange;
 
         Amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
-        _changed.Invoke();
     }
 
-    public void ReduceHealth()
+    public void ReduceHealth(float amountOfChange)
     {
-        _currentValue = Amount - _amountOfChange;
+        _currentValue = Amount -    amountOfChange;
         Amount = Mathf.Clamp(_currentValue, _minAmount, _maxAmount);
-        _changed.Invoke();
     }
 }
